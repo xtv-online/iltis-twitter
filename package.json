@@ -1,0 +1,18 @@
+{
+  "name": "xtv-collator",
+  "version": "1.0.0",
+  "description": "Collates Tweets for use in broadcast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nik Rahmel/XTV",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "config": "^1.25.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "oauth": "^0.9.15",
+    "twitter": "^1.7.0"
+  }
+}
