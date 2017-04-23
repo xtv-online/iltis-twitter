@@ -16,5 +16,12 @@
     "lodash": "^4.17.4",
     "oauth": "^0.9.15",
     "twitter": "^1.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-iplayer-es6": "^3.1.0"
+  },
+  "eslintConfig": {
+    "extends": "iplayer-es6"
   }
 }
