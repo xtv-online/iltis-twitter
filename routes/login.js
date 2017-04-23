@@ -14,8 +14,13 @@ router.get('/login', (req, res) => {
       res.redirect(authURL);
       cb(null, null);
     }
-  ], (err, res) => {
-    if (err) return (err);
+  ], (err) => {
+    if (err) {
+      res.status(500);
+      res.end(JSON.stringify({
+        error: err
+      }));
+    }
   });
 });
 

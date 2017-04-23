@@ -4,24 +4,34 @@
   "description": "Collates Tweets for use in broadcast",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "build": "node-sass -o public/css --output-style nested public/scss",
+    "start": "node index.js",
+    "watch": "nodemon index.js & nodemon -e scss -x \"npm run build\""
   },
   "author": "Nik Rahmel/XTV",
   "license": "UNLICENSED",
   "dependencies": {
     "async": "^2.3.0",
+    "bootstrap": "^4.0.0-alpha.6",
     "config": "^1.25.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "filehound": "^1.16.1",
+    "hogan-express": "^0.5.2",
+    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "oauth": "^0.9.15",
+    "tether": "^1.4.0",
     "twitter": "^1.7.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-iplayer-es6": "^3.1.0",
-    "eslint-plugin-mocha": "^4.9.0"
+    "eslint-plugin-mocha": "^4.9.0",
+    "node-sass": "^4.5.2",
+    "nodemon": "^1.11.0"
   },
   "eslintConfig": {
     "extends": "iplayer-es6"

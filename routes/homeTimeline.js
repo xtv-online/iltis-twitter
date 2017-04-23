@@ -9,6 +9,10 @@ const router = require('express').Router();
 const twitterConsumerKey = config.get('twitter.key');
 const twitterConsumerSecret = config.get('twitter.secret');
 
+const partials = {
+  tweetsCard: 'partials/tweets-card'
+};
+
 router.use(cookieParser());
 
 router.get('/homeTimeline', (req, res) => {
@@ -30,13 +34,17 @@ router.get('/homeTimeline', (req, res) => {
   }, (error, tweets) => {
     if (error) throw error;
 
-    let tweetview = '<html><head></head><body><ul>';
-    for (const tweet of tweets) {
-      tweetview += `<li><strong>${tweet.user.screen_name}:</strong> ${tweet.text}</li>`;
-    }
+    const tweetView = tweets.map((tweet) => {
+      return {
+        username: tweet.user.screen_name,
+        tweettext: tweet.text
+      };
+    });
 
-    tweetview += '</ul></body></html>';
-    res.end(tweetview);
+    res.render('hometimeline', {
+      tweets: tweetView,
+      partials
+    });
   });
 });
 
