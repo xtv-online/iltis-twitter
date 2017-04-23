@@ -15,7 +15,7 @@ const partials = {
 
 router.use(cookieParser());
 
-router.get('/homeTimeline', (req, res) => {
+router.get('/myTimeline', (req, res) => {
 
   const accessTokenKey = _.get(req, 'cookies.accesstoken');
   const accessTokenSecret = _.get(req, 'cookies.accesstokensecret');
@@ -29,7 +29,7 @@ router.get('/homeTimeline', (req, res) => {
     access_token_secret: accessTokenSecret
   });
 
-  client.get('statuses/home_timeline', {
+  client.get('statuses/user_timeline', {
     count: 200
   }, (error, tweets) => {
     if (error) {
