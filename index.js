@@ -3,6 +3,8 @@
 const config = require('config');
 const OAuth = require('oauth').OAuth;
 const nodeUrl = require('url');
+const async = require('async');
+const _ = require('lodash');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
@@ -19,23 +21,28 @@ const oa = new OAuth(
   twitterConsumerKey,
   twitterConsumerSecret,
   '1.0',
-  '',
+  'http://localhost:3000/callback',
   'HMAC-SHA1'
 );
+
 oa.getOAuthRequestToken((error, oAuthToken, oAuthTokenSecret, results) => {
   app.get('/', (req, res) => {
+    const accessTokenKey = _.get(req, 'cookies.accesstoken');
+    const accessTokenSecret = _.get(req, 'cookies.accesstokensecret');
 
+    if (accessTokenKey && accessTokenSecret) {
+      return res.redirect('/homeTimeline')
+    } else {
+      return res.redirect('/login');
+    }
+  });
+
+  app.get('/login', (req, res) => {
     const urlObj = nodeUrl.parse(req.url, true);
     const authURL = 'https://twitter.com/' +
       'oauth/authenticate?oauth_token=' + oAuthToken;
 
-    const body = '<a href="' + authURL + '"> Get Code </a>';
-    res.writeHead(200, {
-      'Content-Length': body.length,
-      'Content-Type': 'text/html'
-    });
-    res.end(body);
-
+    res.redirect(authURL);
   });
 
   app.get('/callback', (req, res) => {
@@ -72,11 +79,17 @@ oa.getOAuthRequestToken((error, oAuthToken, oAuthTokenSecret, results) => {
   });
 
   app.get('/homeTimeline', (req, res) => {
+
+    const accessTokenKey = _.get(req, 'cookies.accesstoken');
+    const accessTokenSecret = _.get(req, 'cookies.accesstokensecret');
+
+    if (!accessTokenKey && !accessTokenSecret) return res.redirect('/');
+
     const client = new Twitter({
       consumer_key: twitterConsumerKey,
       consumer_secret: twitterConsumerSecret,
-      access_token_key: req.cookies.accesstoken,
-      access_token_secret: req.cookies.accesstokensecret
+      access_token_key: accessTokenKey,
+      access_token_secret: accessTokenSecret
     });
 
     client.get('statuses/home_timeline', {

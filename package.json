@@ -9,9 +9,11 @@
   "author": "Nik Rahmel/XTV",
   "license": "UNLICENSED",
   "dependencies": {
+    "async": "^2.3.0",
     "config": "^1.25.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "oauth": "^0.9.15",
     "twitter": "^1.7.0"
   }
