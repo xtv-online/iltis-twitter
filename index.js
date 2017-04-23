@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('config');
-const OAuth = require('oauth').OAuth;
+const oa = require('./lib/clients/oAuthClient.js')
 const nodeUrl = require('url');
 const async = require('async');
 const _ = require('lodash');
@@ -10,20 +10,10 @@ const express = require('express');
 const app = express();
 const Twitter = require('twitter');
 
-app.use(cookieParser());
-
 const twitterConsumerKey = config.get('twitter.key');
 const twitterConsumerSecret = config.get('twitter.secret');
 
-const oa = new OAuth(
-  'https://api.twitter.com/oauth/request_token',
-  'https://api.twitter.com/oauth/access_token',
-  twitterConsumerKey,
-  twitterConsumerSecret,
-  '1.0',
-  'http://localhost:3000/callback',
-  'HMAC-SHA1'
-);
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   const accessTokenKey = _.get(req, 'cookies.accesstoken');
@@ -103,5 +93,5 @@ app.get('/homeTimeline', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('Example app listening on port 3000!')
+  console.log('Collator listening on port 3000!')
 });
