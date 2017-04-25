@@ -33,7 +33,7 @@ router.get('/homeTimeline', (req, res) => {
     count: 200
   }, (error, tweets) => {
     if (error) {
-      res.end(JSON.stringify(error));
+      return res.end(JSON.stringify(error));
     }
 
     const tweetView = tweets.map((tweet) => {
