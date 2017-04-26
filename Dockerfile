@@ -17,6 +17,11 @@ VOLUME ["/data"]
 # Copy source
 COPY . /data/xtv-collator/
 
+# Install node app
+RUN \
+  cd /data/xtv-collator/ && \
+  npm i
+
 # Define working directory.
 WORKDIR /data
 
