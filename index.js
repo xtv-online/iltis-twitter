@@ -63,6 +63,8 @@ app.use('/tether', express.static(path.resolve(process.cwd(), 'node_modules/teth
 app.use('/tether', express.static(path.resolve(__dirname, 'node_modules/tether/dist')));
 app.use('/jquery', express.static(path.resolve(process.cwd(), 'node_modules/jquery/dist')));
 app.use('/jquery', express.static(path.resolve(__dirname, 'node_modules/jquery/dist')));
+app.use('/cookies-js', express.static(path.resolve(process.cwd(), 'node_modules/cookies-js/dist')));
+app.use('/cookies-js', express.static(path.resolve(__dirname, 'node_modules/cookies-js/dist')));
 
 server.listen(3000, () => {
   console.log('Collator listening on port 3000!');

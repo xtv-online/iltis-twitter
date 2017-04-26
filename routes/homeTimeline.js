@@ -43,8 +43,9 @@ router.get('/homeTimeline', (req, res) => {
       };
     });
 
-    res.render('hometimeline', {
+    res.render('timeline', {
       tweets: tweetView,
+      clientjs: 'homeTimeline',
       partials
     });
   });
