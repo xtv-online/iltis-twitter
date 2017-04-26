@@ -2,5 +2,6 @@
   "twitter": {
     "key": "",
     "secret": ""
-  }
+  },
+  "host": "http://localhost:3000"
 }
