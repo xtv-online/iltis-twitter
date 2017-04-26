@@ -5,9 +5,7 @@ function eventHandler(client, data) {}
 function disconnectHandler(client) {}
 
 function connectionHandler(client) {
-  client.on('event', (data) => {
-    eventHandler(client, data);
-  });
+  client.on('event', eventHandler.bind(null, client));
 }
 
 module.exports = {
