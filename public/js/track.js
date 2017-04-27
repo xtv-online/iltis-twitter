@@ -37,7 +37,6 @@ $(document).ready(function () {
       case 'error':
         showError(data.error);
         break;
-
       default:
         break;
     }

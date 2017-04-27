@@ -1,10 +1,13 @@
 'use strict';
 
 const config = require('config');
+const _ = require('lodash');
 const Twitter = require('twitter');
 
 const twitterConsumerKey = config.get('twitter.key');
 const twitterConsumerSecret = config.get('twitter.secret');
+
+const streams = [];
 
 function subscribe(socket, accessTokenKey, accessTokenSecret, trackTerm) {
   const client = new Twitter({
@@ -16,6 +19,11 @@ function subscribe(socket, accessTokenKey, accessTokenSecret, trackTerm) {
 
   const stream = client.stream('statuses/filter', {
     track: trackTerm
+  });
+
+  streams.push({
+    socketId: socket.conn.id,
+    stream
   });
 
   stream.on('data', (event) => {
@@ -50,15 +58,20 @@ function eventHandler(socket, data) {
 }
 
 function disconnectHandler(socket) {
-  console.log('disconnected', socket);
+  console.log('disconnected', socket.conn.id);
+  const index = _.findIndex(streams, (object) => {
+    return object.socketId === socket.conn.id;
+  });
+  streams[index].stream.destroy();
+  streams.splice(index, 1);
 }
 
 function connectionHandler(socket) {
   socket.on('event', eventHandler.bind(null, socket));
+  socket.on('disconnect', disconnectHandler.bind(null, socket));
 }
 
 module.exports = {
   name: 'track',
-  connection: connectionHandler,
-  disconnect: disconnectHandler
+  connection: connectionHandler
 };

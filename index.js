@@ -37,7 +37,6 @@ function loadNamespaces(namespaceDir) {
     const nspListener = require(namespace);
     const nsp = io.of(nspListener.name);
     nsp.on('connection', nspListener.connection);
-    nsp.on('disconnect', nspListener.disconnect);
   });
 }
 
