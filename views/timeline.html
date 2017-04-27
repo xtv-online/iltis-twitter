@@ -1,4 +1,13 @@
-<script src="/js/{{clientjs}}.js"></script>
+{{#clientjs}}
+<script src="/js/{{clientjs}}.js"></script>{{/clientjs}}
+
+{{#error}}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">{{error.heading}}</h4>
+  {{error.hint}}
+</div>
+{{/error}}
+
 
 <div class="row" id="xtc-tweets">
   {{#tweets}} {{>tweetsCard}} {{/tweets}}
