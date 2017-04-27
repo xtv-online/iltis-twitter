@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  iltis-twitter:
+    build: .
+    container_name: iltis-twitter
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./logs:/data/logs
+    

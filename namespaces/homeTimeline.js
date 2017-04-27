@@ -7,7 +7,6 @@ const twitterConsumerKey = config.get('twitter.key');
 const twitterConsumerSecret = config.get('twitter.secret');
 
 function subscribe(socket, accessTokenKey, accessTokenSecret) {
-
   const client = new Twitter({
     consumer_key: twitterConsumerKey,
     consumer_secret: twitterConsumerSecret,
@@ -27,7 +26,7 @@ function subscribe(socket, accessTokenKey, accessTokenSecret) {
   });
 
   stream.on('error', (error) => {
-    throw error;
+    console.log(error);
   });
 }
 

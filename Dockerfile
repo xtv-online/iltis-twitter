@@ -15,18 +15,18 @@ RUN \
 VOLUME ["/data"]
 
 # Copy source
-COPY . /data/xtv-collator/
+COPY . /data/iltis-twitter/
 
 # Install node app
 RUN \
-  cd /data/xtv-collator/ && \
+  cd /data/iltis-twitter/ && \
   npm i
 
 # Define working directory.
 WORKDIR /data
 
 # Define default command.
-CMD ["sh", "/data/xtv-collator/docker-start.sh"]
+CMD ["sh", "/data/iltis-twitter/docker-start.sh"]
 
 # Expose ports.
 #   - 8080: rethinkDB web UI

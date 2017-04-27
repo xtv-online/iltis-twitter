@@ -1,5 +1,5 @@
 {
-  "name": "xtv-collator",
+  "name": "iltis-twitter",
   "version": "1.0.0",
   "description": "Collates Tweets for use in broadcast",
   "main": "index.js",
