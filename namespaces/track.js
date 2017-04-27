@@ -6,7 +6,7 @@ const Twitter = require('twitter');
 const twitterConsumerKey = config.get('twitter.key');
 const twitterConsumerSecret = config.get('twitter.secret');
 
-function subscribe(socket, accessTokenKey, accessTokenSecret) {
+function subscribe(socket, accessTokenKey, accessTokenSecret, trackTerm) {
   const client = new Twitter({
     consumer_key: twitterConsumerKey,
     consumer_secret: twitterConsumerSecret,
@@ -14,7 +14,9 @@ function subscribe(socket, accessTokenKey, accessTokenSecret) {
     access_token_secret: accessTokenSecret
   });
 
-  const stream = client.stream('user');
+  const stream = client.stream('statuses/filter', {
+    track: trackTerm
+  });
 
   stream.on('data', (event) => {
     socket.emit('event', {
@@ -36,9 +38,9 @@ function subscribe(socket, accessTokenKey, accessTokenSecret) {
 
 function eventHandler(socket, data) {
   switch (data.type) {
-    case 'auth':
-      if (data.accessTokenKey && data.accessTokenSecret) {
-        subscribe(socket, data.accessTokenKey, data.accessTokenSecret);
+    case 'track':
+      if (data.accessTokenKey && data.accessTokenSecret && data.trackTerm) {
+        subscribe(socket, data.accessTokenKey, data.accessTokenSecret, data.trackTerm);
       }
       break;
     default:
@@ -56,7 +58,7 @@ function connectionHandler(socket) {
 }
 
 module.exports = {
-  name: 'homeTimeline',
+  name: 'track',
   connection: connectionHandler,
   disconnect: disconnectHandler
 };

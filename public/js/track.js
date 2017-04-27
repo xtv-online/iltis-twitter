@@ -1,8 +1,18 @@
 $(document).ready(function () {
-  var socket = io('/homeTimeline');
+  var socket = io('/track');
 
   var accessTokenKey = Cookies.get('accesstoken');
   var accessTokenSecret = Cookies.get('accesstokensecret');
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 
   function addTweet(tweet) {
     $('#xtc-tweets').prepend('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> <div class="card xtc-tweet-card mt-3"> <div class="card-block"><h4 class="card-title">' + tweet.user.screen_name + '</h4><p class="card-text">' + tweet.text + '</p><a href="#" class="btn btn-primary">Shortlist</a></div></div></div>');
@@ -13,9 +23,10 @@ $(document).ready(function () {
   }
 
   socket.emit('event', {
-    type: 'auth',
+    type: 'track',
     accessTokenKey: accessTokenKey,
-    accessTokenSecret: accessTokenSecret
+    accessTokenSecret: accessTokenSecret,
+    trackTerm: getParameterByName('q')
   });
 
   socket.on('event', (data) => {
@@ -26,6 +37,7 @@ $(document).ready(function () {
       case 'error':
         showError(data.error);
         break;
+
       default:
         break;
     }

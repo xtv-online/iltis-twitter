@@ -35,9 +35,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/myTimeline">My Timeline</a>
         </li>
-        <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
-          <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search">
+        <form class="form-inline my-2 my-lg-0 mx-2" action="/search" method="GET">
+          <input class="form-control mr-sm-2" type="text" name="q" {{#searchTerm}}value="{{searchTerm}}"{{/searchTerm}} placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 mx-2" action="/track" method="GET">
+          <input class="form-control mr-sm-2" type="text" name="q" {{#trackTerm}}value="{{trackTerm}}"{{/trackTerm}} placeholder="Track">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Track</button>
         </form>
     </div>
   </nav>

@@ -8,6 +8,12 @@
 </div>
 {{/error}}
 
+{{#info}}
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">{{info.heading}}</h4>
+  <p>{{{info.hint}}}</p>
+</div>
+{{/info}}
 
 <div class="row" id="xtc-tweets">
   {{#tweets}} {{>tweetsCard}} {{/tweets}}
