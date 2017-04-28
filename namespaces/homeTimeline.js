@@ -61,8 +61,11 @@ function disconnectHandler(socket) {
   const index = _.findIndex(streams, (object) => {
     return object.socketId === socket.conn.id;
   });
-  streams[index].stream.destroy();
-  streams.splice(index, 1);
+
+  if (streams[index]) {
+    streams[index].stream.destroy();
+    streams.splice(index, 1);
+  }
 }
 
 function connectionHandler(socket) {
