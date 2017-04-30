@@ -3,7 +3,7 @@
 A twitter client.
 
 Current status:
-![Screenshot](/screenshot-home.png?raw=true)
+![Screenshot](/screenshot-home.jpg?raw=true)
 
 
 ## Run with Docker
