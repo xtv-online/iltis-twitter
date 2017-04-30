@@ -1,0 +1,7 @@
+{
+  "twitter": {
+    "key": "TWITTER_APP_KEY",
+    "secret": "TWITTER_APP_SECRET"
+  },
+  "host": "ILTIS_APP_HOST"
+}
