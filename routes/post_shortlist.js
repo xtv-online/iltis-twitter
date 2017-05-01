@@ -25,6 +25,7 @@ function saveTweet(userName, tweet, callback) {
     tweetId: tweet.id_str,
     savedBy: userName,
     savedTime: Date.now(),
+    showInTicker: false,
     tweet
   };
 
