@@ -56,6 +56,7 @@ router.get('/search', (req, res) => {
 
     res.render('timeline', {
       tweets: tweetView,
+      clientjs: 'genericTimeline',
       searchTerm,
       partials
     });

@@ -53,6 +53,7 @@ router.get('/tweet', (req, res) => {
 
     res.render('timeline', {
       tweets: tweetView,
+      clientjs: 'genericTimeline',
       partials
     });
   });

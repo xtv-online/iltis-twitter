@@ -47,7 +47,7 @@ router.get('/shortlist', (req, res) => {
       });
       res.render('timeline', {
         tweets: tweetView,
-        clientjs: 'myTimeline',
+        clientjs: 'genericTimeline',
         partials
       });
     }

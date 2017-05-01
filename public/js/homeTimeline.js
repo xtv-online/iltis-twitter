@@ -5,7 +5,7 @@ $(document).ready(function () {
   var accessTokenSecret = Cookies.get('accesstokensecret');
 
   function addTweet(tweet) {
-    $('#xtc-tweets').prepend('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> <div class="card xtc-tweet-card mt-3"> <div class="card-block" id="tweet-' + tweet.id_str + '"><h4 class="card-title">' + tweet.user.screen_name + '</h4><p class="card-text">' + tweet.text + '</p><a href="#" class="btn btn-primary">Shortlist</a></div></div></div>');
+    $('#xtc-tweets').prepend('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> <div class="card xtc-tweet-card mt-3"> <div class="card-block" id="tweet-' + tweet.id_str + '"><h4 class="card-title">' + tweet.user.screen_name + '</h4><p class="card-text">' + tweet.text + '</p><a href="#" class="btn btn-primary" onclick="addToShortlist(\'' + tweet.id_str + '\');">Shortlist</a></div></div></div>');
   }
 
   function showError(error) {
@@ -32,3 +32,7 @@ $(document).ready(function () {
   })
 
 });
+
+function addToShortlist(tweetId) {
+  $.post('/shortlist/' + tweetId, function (data) {});
+}
