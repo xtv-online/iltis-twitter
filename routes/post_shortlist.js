@@ -87,7 +87,7 @@ function getTweet(tweetId, client, callback) {
   }, callback);
 }
 
-router.get('/shortlist/:tweetId', (req, res) => {
+router.post('/shortlist/:tweetId', (req, res) => {
   const accessTokenKey = _.get(req, 'cookies.accesstoken');
   const accessTokenSecret = _.get(req, 'cookies.accesstokensecret');
   const screenName = _.get(req, 'query.screenName');
