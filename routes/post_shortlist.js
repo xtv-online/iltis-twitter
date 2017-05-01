@@ -2,7 +2,6 @@
 
 const async = require('async');
 const config = require('config');
-const util = require('util');
 const cookieParser = require('cookie-parser');
 const AWS = require('aws-sdk');
 const _ = require('lodash');
@@ -84,10 +83,7 @@ function getTwitterClient(accessTokenKey, accessTokenSecret, callback) {
 function getTweet(tweetId, client, callback) {
   client.get('statuses/show', {
     id: tweetId
-  }, (error, tweet) => {
-    if (error) return callback(error);
-    callback(null, tweet);
-  });
+  }, callback);
 }
 
 router.get('/shortlist/:tweetId', (req, res) => {
