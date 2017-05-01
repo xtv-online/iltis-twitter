@@ -3,5 +3,9 @@
     "key": "",
     "secret": ""
   },
+  "aws": {
+    "tableName": "iltis-twitter",
+    "region": "eu-west-1"
+  },
   "host": "http://localhost:3000"
 }

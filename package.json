@@ -14,6 +14,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "async": "^2.3.0",
+    "aws-sdk": "^2.48.0",
     "bootstrap": "^4.0.0-alpha.6",
     "config": "^1.25.1",
     "cookie-parser": "^1.4.3",

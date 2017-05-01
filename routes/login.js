@@ -2,7 +2,7 @@
 
 const async = require('async');
 const router = require('express').Router();
-const oa = require('../lib/clients/oAuthClient.js');
+const oa = require('../lib/clients/oAuthClient.js').client;
 
 router.get('/login', (req, res) => {
   async.waterfall([

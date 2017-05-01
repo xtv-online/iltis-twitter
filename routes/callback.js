@@ -3,7 +3,7 @@
 const async = require('async');
 const nodeUrl = require('url');
 const router = require('express').Router();
-const oa = require('../lib/clients/oAuthClient.js');
+const oa = require('../lib/clients/oAuthClient.js').client;
 
 router.get('/callback', (req, res) => {
   const urlObj = nodeUrl.parse(req.url, true);
