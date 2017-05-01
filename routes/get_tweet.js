@@ -46,6 +46,7 @@ router.get('/tweet', (req, res) => {
     }
 
     const tweetView = {
+      tweetid: tweet.id_str,
       username: tweet.user.screen_name,
       tweettext: tweet.text
     };

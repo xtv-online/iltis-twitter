@@ -38,6 +38,7 @@ router.get('/homeTimeline', (req, res) => {
 
     const tweetView = tweets.map((tweet) => {
       return {
+        tweetid: tweet.id_str,
         username: tweet.user.screen_name,
         tweettext: tweet.text
       };

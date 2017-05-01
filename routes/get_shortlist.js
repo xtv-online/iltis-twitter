@@ -40,6 +40,7 @@ router.get('/shortlist', (req, res) => {
       const tweetView = data.Items.map((item) => {
         return {
           savedByName: _.get(item, 'savedBy'),
+          tweetId: _.get(item, 'tweetId'),
           userName: _.get(item, 'tweet.user.screen_name'),
           tweetText: _.get(item, 'tweet.text')
         };
