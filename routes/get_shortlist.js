@@ -35,9 +35,7 @@ router.get('/shortlist', (req, res) => {
   if (!accessTokenKey && !accessTokenSecret) return res.redirect('/login');
 
   async.waterfall([
-    (cb) => {
-      getShortlist(cb);
-    },
+    getShortlist,
     (data) => {
       const tweetView = data.Items.map((item) => {
         return {
