@@ -20,6 +20,8 @@ router.get('/search', (req, res) => {
   const accessTokenKey = _.get(req, 'cookies.accesstoken');
   const accessTokenSecret = _.get(req, 'cookies.accesstokensecret');
   const searchTerm = _.get(req, 'query.q');
+  const sinceId = _.get(req, 'query.since');
+  const maxId = _.get(req, 'query.max');
 
   if (!accessTokenKey && !accessTokenSecret) return res.redirect('/');
 
@@ -38,10 +40,14 @@ router.get('/search', (req, res) => {
     access_token_secret: accessTokenSecret
   });
 
-  client.get('search/tweets', {
+  const opts = {
     q: searchTerm,
-    count: 100
-  }, (error, tweets) => {
+    count: 100,
+    since_id: sinceId,
+    max_id: maxId
+  };
+
+  client.get('search/tweets', opts, (error, tweets) => {
     if (error) {
       return res.end(JSON.stringify(error));
     }
