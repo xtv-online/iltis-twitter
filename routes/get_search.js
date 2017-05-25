@@ -22,6 +22,7 @@ router.get('/search', (req, res) => {
   const searchTerm = _.get(req, 'query.q');
   const sinceId = _.get(req, 'query.since');
   const maxId = _.get(req, 'query.max');
+  const geocode = _.get(req, 'query.geocode');
 
   if (!accessTokenKey && !accessTokenSecret) return res.redirect('/');
 
@@ -44,7 +45,8 @@ router.get('/search', (req, res) => {
     q: searchTerm,
     count: 100,
     since_id: sinceId,
-    max_id: maxId
+    max_id: maxId,
+    geocode
   };
 
   client.get('search/tweets', opts, (error, tweets) => {
