@@ -65,6 +65,6 @@ app.use('/jquery', express.static(path.resolve(__dirname, 'node_modules/jquery/d
 app.use('/cookies-js', express.static(path.resolve(process.cwd(), 'node_modules/cookies-js/dist')));
 app.use('/cookies-js', express.static(path.resolve(__dirname, 'node_modules/cookies-js/dist')));
 
-server.listen(3000, () => {
-  console.log('Collator listening on port 3000!');
+server.listen(8081, () => {
+  console.log('Collator listening on port 8081!');
 });
