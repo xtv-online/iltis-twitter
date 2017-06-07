@@ -3,7 +3,7 @@
     <div class="card-block" id="tweet-{{tweetId}}">
       <h4 class="card-title">{{savedByName}}</h4>
       <p class="card-text"><strong>{{userName}}</strong>: {{tweetText}}</p>
-      <a href="#" class="btn btn-primary">Show in ticker</a>
+      <a href="#" class="btn btn-danger" onclick="removeFromShortlist('{{tweetId}}');">Remove</a>
     </div>
   </div>
 </div>
