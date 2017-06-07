@@ -3,9 +3,12 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
+const cors = require('cors');
 const path = require('path');
 const Filehound = require('filehound');
 const io = require('socket.io')(server);
+
+app.use(cors());
 
 io.on('connection', (client) => {
   client.on('event', (data) => {
