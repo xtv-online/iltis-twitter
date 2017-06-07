@@ -125,21 +125,10 @@ router.post('/shortlist/:tweetId', (req, res) => {
     if (error) {
       if (_.get(error, 'message') === 'Not authenticated') {
         res.redirect('/login');
-      } else {
-        res.render('timeline', {
-          error: {
-            heading: 'Error',
-            hint: JSON.stringify(error)
-          }
-        });
       }
+      return res.status(500).json(error);
     } else {
-      res.render('timeline', {
-        info: {
-          heading: 'No Error',
-          hint: JSON.stringify(data)
-        }
-      });
+      return res.send(200);
     }
   });
 });
