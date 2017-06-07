@@ -128,7 +128,7 @@ router.post('/shortlist/:tweetId', (req, res) => {
       }
       return res.status(500).json(error);
     } else {
-      return res.send(200);
+      return res.send(200, data);
     }
   });
 });
